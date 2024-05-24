@@ -1,7 +1,7 @@
 <launch>
 
 	<arg name="stt_grammar" default="$(find-pkg-share speech_to_text)/grammars/example.gram" />
-	<arg name="stt_service" default="sphinx" />
+	<arg name="stt_service" default="whisper" />
 	<arg name="stt_started" default="False" />
 
 	<arg name="parser_grammar" default="$(find-pkg-share speech_to_text)/grammars/example.gram" />

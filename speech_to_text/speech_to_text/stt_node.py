@@ -115,9 +115,15 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
                 try:
                     if self.service == "sphinx":
                         value = self.__rec.recognize_sphinx(
-                            audio, grammar=self.grammar)
+                            audio)
                     elif self.service == "google":
-                        value = self.__rec.recognize_google(audio)
+                        value = self.__rec.recognize_google(audio, language="en-US")
+                    elif self.service == "vosk":
+                        value = self.__rec.recognize_vosk(
+                            audio)
+                    elif self.service == "whisper":
+                        value = self.__rec.recognize_whisper(
+                            audio, model="medium")
 
                     if value is bytes:  # bytes for strings (Python 2)
                         self.get_logger().info(format(value).encode("utf-8"))

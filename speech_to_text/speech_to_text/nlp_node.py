@@ -52,17 +52,18 @@ class NLPNode(Node):  # pylint: disable=too-few-public-methods
             self.get_logger().info(str(tags))
 
             for tag in tags:
-                if (tag[1] == "TO"  # Take the word if is a to  # pylint: disable=too-many-boolean-expressions
-                   # or a prepositional or subordinating conjuntion
-                    or tag[1] == "IN"
-                    or tag[1] == "CD"  # or a cardinal number
-                    or tag[1][0] == "N"  # or a noum
-                    or tag[1][0] == "J"  # or a adjetive
-                    or tag[1][0] == "P"  # or a pronoum
-                    or tag[1][0] == "V"  # or a verb
-                        or tag[1][0] == "W"):  # or a interrogative pronoun
 
-                    nlp_s += tag[0]+" "
+                # if (tag[1] == "TO"  # Take the word if is a to  # pylint: disable=too-many-boolean-expressions
+                #    # or a prepositional or subordinating conjuntion
+                #     or tag[1] == "IN"
+                #     or tag[1] == "CD"  # or a cardinal number
+                #     or tag[1][0] == "N"  # or a noum
+                #     or tag[1][0] == "J"  # or a adjetive
+                #     or tag[1][0] == "P"  # or a pronoum
+                #     or tag[1][0] == "V"  # or a verb
+                #         or tag[1][0] == "W"):  # or a interrogative pronoun
+
+                nlp_s += tag[0]+" "
         self.get_logger().info("NLP: " + str(nlp_s))
         return nlp_s
 

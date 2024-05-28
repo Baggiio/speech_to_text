@@ -3,12 +3,13 @@
 grammar example;
 
 
-public <example> = <greet> | <navigation> | <questions>;
+public <example> = <greet> | <navigation> | <questions> | <confirmation> | <rejection>;
 
 
 
 <greet> = (hi | hello){ greet };
-
+<confirmation> = (yes | sure | yeah | yup | ok | okay){ confirm };
+<rejection> = (no | negative | not at all){ reject };
 <navigation> = (<move> | <stop>);
 <stop> = stop{ stop };
 <move> = (go to){ go } ([ the ]) (<places>);

@@ -2,6 +2,7 @@
 
 import time
 import rclpy
+from playsound import playsound
 from simple_node import Node
 
 from speech_to_text_msgs.msg import StringArray
@@ -67,6 +68,9 @@ class DialogManagerNode(Node):
 
     def start_stt(self) -> None:
         """ start stt method """
+
+        # Play sound when mic starts listening
+        playsound("mic.mp3")
 
         req = Empty.Request()
         self.__start_listening_client.wait_for_service()

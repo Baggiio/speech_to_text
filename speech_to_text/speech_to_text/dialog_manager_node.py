@@ -9,6 +9,8 @@ from speech_to_text_msgs.msg import StringArray
 from speech_to_text_msgs.action import ListenOnce
 from std_srvs.srv import Empty
 
+import os
+
 
 class DialogManagerNode(Node):
     """ Dialog Manager Node Class """
@@ -18,6 +20,7 @@ class DialogManagerNode(Node):
 
         self.is_new_msg = False
         self.new_msg = None
+        self.topic = "stt_nlp"
 
         # service clients
         self.__start_listening_client = self.create_client(
@@ -32,7 +35,7 @@ class DialogManagerNode(Node):
 
         self.__subscription = self.create_subscription(
             StringArray,
-            "stt_parse",
+            self.topic,
             self.__stt_callback,
             10
         )
@@ -70,7 +73,8 @@ class DialogManagerNode(Node):
         """ start stt method """
 
         # Play sound when mic starts listening
-        playsound("mic.mp3")
+        os.chdir(os.path.expanduser("~"))
+        playsound("ws_socialdroids/src/3rd/speech_to_text/mic.mp3")
 
         req = Empty.Request()
         self.__start_listening_client.wait_for_service()

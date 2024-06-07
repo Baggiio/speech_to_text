@@ -46,7 +46,7 @@ class ParserNode(Node):  # pylint: disable=too-few-public-methods
 
         data = msg.data
         new_msg = StringArray()
-        new_msg.strings = self.parse(data)
+        new_msg.strings = data.strip("\n").split(" ")
         self.__pub.publish(new_msg)
 
     def parse(self, data: str) -> List[str]:

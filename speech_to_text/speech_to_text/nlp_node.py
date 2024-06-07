@@ -6,6 +6,7 @@ import contractions
 import rclpy
 from simple_node import Node
 from std_msgs.msg import String
+from speech_to_text_msgs.msg import StringArray
 
 
 class NLPNode(Node):  # pylint: disable=too-few-public-methods
@@ -15,7 +16,7 @@ class NLPNode(Node):  # pylint: disable=too-few-public-methods
         super().__init__("nlp_node")
 
         # pubs and subs
-        self.__pub = self.create_publisher(String, "stt_nlp", 10)
+        self.__pub = self.create_publisher(StringArray, "stt_nlp", 10)
 
         self.__subscription = self.create_subscription(
             String,
@@ -31,8 +32,8 @@ class NLPNode(Node):  # pylint: disable=too-few-public-methods
         """
 
         data = msg.data
-        new_msg = String()
-        new_msg.data = self.do_nlp(data)
+        new_msg = StringArray()
+        new_msg.strings = self.do_nlp(data).strip("\n").split(" ")
         self.__pub.publish(new_msg)
 
     def do_nlp(self, data: str) -> str:

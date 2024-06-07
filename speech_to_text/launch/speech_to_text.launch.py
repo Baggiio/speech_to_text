@@ -64,13 +64,13 @@ def generate_launch_description():
         namespace=namespace,
     )
 
-    parser_node_cmd = Node(
-        package=pkg_name,
-        executable="parser_node",
-        name="parser_node",
-        namespace=namespace,
-        parameters=[{"grammar": parser_grammar}]
-    )
+    # parser_node_cmd = Node(
+    #     package=pkg_name,
+    #     executable="parser_node",
+    #     name="parser_node",
+    #     namespace=namespace,
+    #     parameters=[{"grammar": parser_grammar}]
+    # )
 
     dialog_manager_node_cmd = Node(
         package=pkg_name,
@@ -90,7 +90,7 @@ def generate_launch_description():
 
     ld.add_action(stt_node_cmd)
     ld.add_action(nlp_node_cmd)
-    ld.add_action(parser_node_cmd)
+    # ld.add_action(parser_node_cmd)
     ld.add_action(dialog_manager_node_cmd)
 
     return ld

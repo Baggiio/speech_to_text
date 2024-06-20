@@ -12,7 +12,7 @@ from std_srvs.srv import Empty
 from speech_to_text.custom_thread import CustomThread
 
 from simple_node import Node
-
+import os
 
 class STTNode(Node):  # pylint: disable=too-many-instance-attributes
     """ STT Node Class """
@@ -113,6 +113,9 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
                 stt_result = String()
 
                 try:
+                    home = os.path.expanduser("~")
+                    os.chdir(home + "/ws_socialdroids/src/3rd/speech_to_text/")
+
                     if self.service == "sphinx":
                         value = self.__rec.recognize_sphinx(
                             audio)
@@ -121,6 +124,9 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
                     elif self.service == "vosk":
                         value = self.__rec.recognize_vosk(
                             audio)
+                        
+                        value = value.replace("{", '').replace("}", '').replace("'", '').replace(":", '').replace("text", '').replace("\n", '').replace('"', '').lower()
+                    
                     elif self.service == "whisper":
                         value = self.__rec.recognize_whisper(
                             audio, model="medium")
@@ -140,6 +146,7 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
                         str(error)
 
                 finally:
+                    os.chdir(home + "/ws_socialdroids/")
                     self.__pub.publish(stt_result)
 
     def __listen_stt_thread_cb(self) -> None:

@@ -27,7 +27,7 @@ def generate_launch_description():
     stt_service = LaunchConfiguration("stt_service")
     declare_stt_service_cmd = DeclareLaunchArgument(
         "stt_service",
-        default_value="google",
+        default_value="vosk",
         description="Speech recognition service")
 
     stt_started = LaunchConfiguration("stt_started")

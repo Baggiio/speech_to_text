@@ -25,8 +25,8 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
 
         self.__rec = sr.Recognizer()
         self.__mic = sr.Microphone()
-        self.__rec.dynamic_energy_threshold = True  # Update the threshold after listen
-        self._energy_threshold = 0
+        self.__rec.dynamic_energy_threshold = False  # Update the threshold after listen
+        self._energy_threshold = 50
 
         # loading params
         service_param_name = "service"
@@ -88,11 +88,11 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
         """
 
         rec = sr.Recognizer()
-        mic = sr.Microphone()
-        self.get_logger().info("A moment of silence, please...")
-        with mic as source:
-            rec.adjust_for_ambient_noise(source, duration=seconds)
-        self._energy_threshold = rec.energy_threshold  # Saving energy threshold
+        # mic = sr.Microphone()
+        # self.get_logger().info("A moment of silence, please...")
+        # with mic as source:
+        #     rec.adjust_for_ambient_noise(source, duration=seconds)
+        # self._energy_threshold = rec.energy_threshold  # Saving energy threshold
         self.__rec.energy_threshold = self._energy_threshold
         self.get_logger().info("Set minimum energy threshold to " + str(self._energy_threshold))
 

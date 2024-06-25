@@ -120,7 +120,7 @@ class STTNode(Node):  # pylint: disable=too-many-instance-attributes
                         value = self.__rec.recognize_sphinx(
                             audio)
                     elif self.service == "google":
-                        value = self.__rec.recognize_google(audio, language="en-US")
+                        value = self.__rec.recognize_google(audio, language="pt-BR")
                     elif self.service == "vosk":
                         value = self.__rec.recognize_vosk(
                             audio)

@@ -74,7 +74,7 @@ class DialogManagerNode(Node):
 
         # Play sound when mic starts listening
         os.chdir(os.path.expanduser("~"))
-        playsound("ws_socialdroids/src/3rd/speech_to_text/mic.mp3")
+        # playsound("ws_socialdroids/src/3rd/speech_to_text/mic.mp3")
 
         req = Empty.Request()
         self.__start_listening_client.wait_for_service()

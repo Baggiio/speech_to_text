@@ -108,10 +108,12 @@ class DialogManagerNode(Node):
         # starting stt
         self.start_stt()
 
+        self.elapsed_time = 0
         # wait for message
-        while (not self.is_new_msg and not goal_handle.is_cancel_requested):
+        while (not self.is_new_msg and not goal_handle.is_cancel_requested) and self.elapsed_time < 7:
             self.get_logger().info("Waiting for msg")
             time.sleep(0.5)
+            self.elapsed_time += 0.5
 
         # stoping stt
         self.stop_stt()

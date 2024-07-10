@@ -33,7 +33,7 @@ class NLPNode(Node):  # pylint: disable=too-few-public-methods
 
         data = msg.data
         new_msg = StringArray()
-        new_msg.strings = self.do_nlp(data).strip("\n").split(" ")
+        new_msg.strings = self.do_nlp(data).strip("\n").lower().split(" ")
         self.__pub.publish(new_msg)
 
     def do_nlp(self, data: str) -> str:
